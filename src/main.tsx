@@ -2,11 +2,61 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+
+import AlbumImage from "./assets/images/Bruno-Mars-Album-Doo-Wops-Hooligans-image.jpg";
+import Song from "./assets/music/lazy-song.mp3";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HeroOne from "./components/hero/HeroOne.tsx";
 import HeroTwo from "./components/hero/HeroTwo.tsx";
-import BrunoMars from "./pages/BrunoMars.tsx";
-import Test from "./pages/Test.tsx";
+import AlbumProvider, { Album } from "./context/AlbumContext.tsx";
+
+const album: Album = {
+  name: "Doo-Wops & Hooligans",
+  year: 2010,
+  image: AlbumImage,
+  songs: [
+    // {
+    //   name: "Grenade",
+    //   source: "",
+    // },
+    // {
+    //   name: "Just the Way You Are",
+    //   source: "",
+    // },
+    // {
+    //   name: "Our First Time",
+    //   source: "",
+    // },
+    // {
+    //   name: "Runaway Baby",
+    //   source: "",
+    // },
+    {
+      name: "The Lazy Song",
+      source: Song,
+    },
+    // {
+    //   name: "Marry You",
+    //   source: "",
+    // },
+    // {
+    //   name: "Talking To The Moon",
+    //   source: "",
+    // },
+    // {
+    //   name: "Liquor Store Blues",
+    //   source: "",
+    // },
+    // {
+    //   name: "Count On Me",
+    //   source: "",
+    // },
+    // {
+    //   name: "The Other Side",
+    //   source: "",
+    // },
+  ],
+};
 
 const router = createBrowserRouter([
   {
@@ -23,7 +73,11 @@ const router = createBrowserRouter([
   },
   {
     path: "bruno-mars",
-    element: <BrunoMars />,
+    element: (
+      <AlbumProvider album={album}>
+        <BrunoMars />
+      </AlbumProvider>
+    ),
   },
   {
     path: "test",
